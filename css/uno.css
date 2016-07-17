@@ -1035,8 +1035,8 @@ code {
 .time,
 .author,
 .tags {
-  font-size: .20em;
-  color: #c7c7c7; }
+  font-size: .8em;
+  color: #FF0000; }
   .date a,
   .time a,
   .author a,
