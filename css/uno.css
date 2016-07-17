@@ -926,7 +926,7 @@ html {
 
 body {
   /*font-family: "Raleway", sans-serif;*/
-  font-family:  Microsoft YaHei;
+  font-family:  "Raleway",Verdana,sans-serif,宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
   font-size: 1em;
   color: #666666; }
 
@@ -955,7 +955,7 @@ h5 {
   margin-top: .8em;
   margin-bottom: .4em;
   /*font-family: "Roboto Slab", serif;*/
-  font-family: Microsoft YaHei;
+  font-family: "Raleway",Verdana,sans-serif,宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
   font-weight: lighter;
   color: #333333;
   -webkit-font-smoothing: antialiased; }
@@ -967,19 +967,19 @@ h1 {
   letter-spacing: .05em; }
 
 h2 {
-  font-size: 8em; }
+  font-size: 2.2em; }
 
 h3 {
-  font-size: 8em; }
+  font-size: 1.8em; }
 
 h4 {
-  font-size: 8em; }
+  font-size: 1.4em; }
 
 h4 {
-  font-size: 8em; }
+  font-size: 1.2em; }
 
 h5 {
-  font-size: 8em; }
+  font-size: 1em; }
 
 p {
   margin-bottom: 1.3em;
@@ -998,7 +998,7 @@ blockquote {
   border: 1px solid #eeeeee;
   border-radius: 3px;
   /*font-family: "Roboto Slab", serif;*/
-  font-family:  Microsoft YaHei;
+  font-family:  "Raleway",Verdana,sans-serif,宋体, serif, "Droid Serif", Helvetica Neue, Helvetica, Arial;
   font-weight: lighter;
   font-style: italic;
   font-size: 1.0em;
@@ -1027,7 +1027,7 @@ code {
   border: none;
   word-wrap: break-word;
   border-radius: 3px;
-  font-family: Microsoft YaHei;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
   font-size: .85em; }
 
 
@@ -1054,7 +1054,7 @@ code {
   color: #999999; }
 
 .intro {
-  font-family: Microsoft YaHei;
+  font-family: "Roboto Slab", serif;
   font-size: 1.2em;
   font-weight: lighter;
   color: #999999; }
@@ -1183,7 +1183,7 @@ hr {
   color: #FFF; }
 
 .panel-subtitle {
-  font-family: Microsoft YaHei;
+  font-family: "Roboto Slab", serif;
   font-size: 1.2em;
   font-weight: lighter;
   letter-spacing: 3px;
