@@ -1120,7 +1120,10 @@ code {
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3); }
 
 hr {
-  border: none; }
+  height: 1px;
+  border: none;
+  border-top: 1px dashed #0066CC;
+  }
 
 .section-title__divider {
   width: 30%;
