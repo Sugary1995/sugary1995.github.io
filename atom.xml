@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>The Blog Of Sugary</title>
+  <subtitle>Do one thing at a time, and do well.</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-07-19T13:31:44.894Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Sugary</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【UNITY】Nightmare</title>
+    <link href="http://yoursite.com/2016/07/17/nightmare/"/>
+    <id>http://yoursite.com/2016/07/17/nightmare/</id>
+    <published>2016-07-17T11:56:21.000Z</published>
+    <updated>2016-07-19T13:31:44.894Z</updated>
+    
+    <content type="html">&lt;hr&gt;
+&lt;h3 id=&quot;【Basic-Information】&quot;&gt;&lt;a href=&quot;#【Basic-Information】&quot; class=&quot;headerlink&quot; title=&quot;【Basic Information】&quot;&gt;&lt;/a&gt;【Basic Information】&lt;/h3&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Name：Nightmare&lt;/li&gt;
+&lt;li&gt;Type：FPS(First-person Shooter)&lt;/li&gt;
+&lt;li&gt;Development environment：&lt;ul&gt;
+&lt;li&gt;Compiler：VS2013&lt;/li&gt;
+&lt;li&gt;Languages：C#&lt;/li&gt;
+&lt;li&gt;Engine：Unity3D&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;【Design-Instruction】&quot;&gt;&lt;a href=&quot;#【Design-Instruction】&quot; class=&quot;headerlink&quot; title=&quot;【Design Instruction】&quot;&gt;&lt;/a&gt;【Design Instruction】&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;&lt;img src=&quot;http://i1.piimg.com/569486/6f7ff55e3bc96dbb.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;【Specification】&quot;&gt;&lt;a href=&quot;#【Specification】&quot; class=&quot;headerlink&quot; title=&quot;【Specification】&quot;&gt;&lt;/a&gt;【Specification】&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Only List some important infomation &lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h4 id=&quot;【Scene】&quot;&gt;&lt;a href=&quot;#【Scene】&quot; class=&quot;headerlink&quot; title=&quot;【Scene】&quot;&gt;&lt;/a&gt;【Scene】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Level 1&lt;br&gt;&lt;img src=&quot;http://i2.piimg.com/569486/da951cbfd10f6052.png&quot; alt=&quot;Markdown&quot;&gt;    &lt;/li&gt;
+&lt;li&gt;Level 2&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/569486/3977d67df728c499.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Player】&quot;&gt;&lt;a href=&quot;#【Player】&quot; class=&quot;headerlink&quot; title=&quot;【Player】&quot;&gt;&lt;/a&gt;【Player】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Character Controller&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/569486/34377952adf07b0e.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Player.cs&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Player : MonoBehaviour
+{
+    #region 主角字段
+    //组件
+    public Transform m_transform;
+    CharacterController m_ch;
+    //角色移动速度
+    public float m_movSpeed = 30.0f;
+    //生命值
+    public int m_life = 5;
+    ////重力
+    //public float m_gravity = 0.02f;
+    #endregion
+    #region 相机字段
+    //摄像机Transform
+    Transform m_camTransform;
+    //摄像机旋转角度
+    Vector3 m_camRot;
+    //摄像机高度
+    float m_camHeight = 1.4f;
+    #endregion
+    #region 射击相关字段
+    //枪口transform
+    Transform m_muzzlepoint;
+    //射击可以碰到的碰撞层次
+    public LayerMask m_layer;
+    //射击时的音效
+    public AudioClip m_audio;
+    //射击时的粒子效果
+    public Transform m_fx;
+    //射击间隔计时器
+    float m_shootTimer = 0;
+    bool isJump = false;
+    #endregion
+
+    // Use this for initialization
+    void Start()
+    {
+        //获取组件
+        m_transform = this.transform;
+        m_ch = this.GetComponent&amp;lt;CharacterController&amp;gt;();
+
+        //获取摄像机
+        m_camTransform = Camera.main.transform;
+        //设置摄像机初始位置
+        Vector3 pos = m_transform.position;
+        pos.y += m_camHeight;
+        m_camTransform.position = pos;
+
+        m_camTransform.rotation = m_transform.rotation;
+        m_camRot = m_camTransform.eulerAngles;  //eulerAngles:欧拉角度
+
+        //射击相关
+        m_muzzlepoint = m_camTransform.FindChild(&amp;quot;M16/muzzlepoint&amp;quot;).transform;
+
+        ////锁定鼠标
+        //Screen.lockCursor = true;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.instance.pause) return;
+        float xm = 0, ym = 0, zm = 0;
+
+        if (m_transform.position.y &amp;gt; 10)
+        {
+            ym -= Time.deltaTime * 50;
+        }
+        else
+        {
+            isJump = false;
+        }
+
+        //获得鼠标移动距离
+        float rh = Input.GetAxis(&amp;quot;Mouse X&amp;quot;);//horizontal 水平方向上
+        float rv = Input.GetAxis(&amp;quot;Mouse Y&amp;quot;);//vertical 竖直方向上
+
+        //旋转摄像机
+        m_camRot.x -= rv * 2;
+        m_camRot.y += rh * 2;
+        m_camTransform.eulerAngles = m_camRot;
+
+        //使主角的面向与摄像机一致
+        Vector3 camRot = m_camTransform.eulerAngles;
+        camRot.x = 0;
+        camRot.z = 0;
+        m_transform.eulerAngles = camRot;
+
+        #region 接受用户键盘操作
+        //上下
+        if (Input.GetKey(&amp;quot;up&amp;quot;) || Input.GetKey(KeyCode.W))
+        {
+            zm += m_movSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(&amp;quot;down&amp;quot;) || Input.GetKey(KeyCode.S))
+        {
+            zm -= m_movSpeed * Time.deltaTime;
+        }
+        //左右
+        if (Input.GetKey(&amp;quot;left&amp;quot;) || Input.GetKey(KeyCode.A))
+        {
+            xm -= m_movSpeed * Time.deltaTime;
+        }
+        else if (Input.GetKey(&amp;quot;right&amp;quot;) || Input.GetKey(KeyCode.D))
+        {
+            xm += m_movSpeed * Time.deltaTime;
+        }
+        //空格
+        if (Input.GetKeyDown(KeyCode.Space) &amp;amp;&amp;amp; !isJump)
+        {
+            isJump = true;
+            ym += 15.0f;
+        }
+        #endregion
+
+        //移动
+        m_ch.Move(m_transform.TransformDirection(new Vector3(xm, ym, zm)));
+
+        //使摄像机位置与主角一致
+        Vector3 pos = m_transform.position;
+        pos.y += m_camHeight;
+        m_camTransform.position = pos;
+
+        //射击相关
+        //更新射击间隔时间
+        m_shootTimer -= Time.deltaTime;
+        //鼠标左键射击
+        if (Input.GetMouseButton(0) &amp;amp;&amp;amp; m_shootTimer &amp;lt;= 0)
+        {
+            m_shootTimer = 0.1f;
+            //播放射击音效
+            this.GetComponent&amp;lt;AudioSource&amp;gt;().PlayOneShot(m_audio);
+            //减少弹药，更新弹药UI
+            GameManager.instance.SetAmmo(1);
+            //RaycastHit用来保存射线的探测结果
+            RaycastHit info;
+            bool hit = Physics.Raycast(m_muzzlepoint.position, m_camTransform.TransformDirection(Vector3.forward), out info, 100, m_layer);
+            //Debug.Log(m_muzzlepoint.position);
+            if (hit)
+            {
+                //如果射中了Tag为Enemy的游戏体
+                if (info.transform.tag.CompareTo(&amp;quot;Enemy&amp;quot;) == 0)
+                {
+                    Enemy enemy = info.transform.GetComponent&amp;lt;Enemy&amp;gt;();
+                    //敌人减少生命
+                    enemy.OnDamage(1);
+
+                }
+                //在射中的地方释放一个粒子效果
+                Instantiate(m_fx, info.point, transform.rotation);
+                //Vector3 fwd = m_camTransform.TransformDirection(Vector3.forward);
+                //n.rigidbody.AddForce(fwd * 1000);
+
+            }
+        }
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 绘制一个图标在场景中表示当前对象，方便观察用。
+    /// &amp;lt;/summary&amp;gt;
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawIcon(this.transform.position, &amp;quot;Spawn.tif&amp;quot;);
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 减少主角生命，要传递给Enemy脚本调用
+    /// &amp;lt;/summary&amp;gt;
+    /// &amp;lt;param name=&amp;quot;damage&amp;quot;&amp;gt;生命值减少的数值&amp;lt;/param&amp;gt;
+    public void OnDamage(int damage)
+    {
+        if (GameManager.instance.pause) return;
+        m_life -= damage;
+        GameManager.instance.SetLife(m_life);
+        if (m_life &amp;lt;= 0)
+        {
+            Screen.lockCursor = false;
+        }
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 回复主角生命，要传递给Pill脚本调用
+    /// &amp;lt;/summary&amp;gt;
+
+    public AudioClip m_audioPickUp;
+    public void CellPickUp()
+    {
+        if (GameManager.instance.pause) return;
+        m_life += 1;
+        this.GetComponent&amp;lt;AudioSource&amp;gt;().PlayOneShot(m_audioPickUp);
+        GameManager.instance.SetLife(m_life);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Enemy】&quot;&gt;&lt;a href=&quot;#【Enemy】&quot; class=&quot;headerlink&quot; title=&quot;【Enemy】&quot;&gt;&lt;/a&gt;【Enemy】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Animation State Machines&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/569486/e9944dfd50f2b620.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Enemy.cs&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class Enemy : MonoBehaviour
+{
+    #region 字段
+    //Transform组件
+    Transform m_transform;
+    //寻路组件
+    NavMeshAgent m_agent;
+    //动画组件
+    Animator m_ani;
+
+    //移动速度
+    public float m_movSpeed = 0.5f;
+    //旋转速度
+    public float m_rotSpeed = 120;
+    //计算器
+    float m_timer = 2;
+    //生命值
+    public int m_life = 15;
+    //攻击范围
+    public float m_attackRange = 40f;
+    //停止距离
+    public float m_stopDistance = 10.0f;
+    float m_BackTimer = 0;
+
+    //主角
+    Player m_player;
+
+    //出生点
+    protected EnemySpawn m_spawn;
+    //敌人生成器模式
+    public int CurrentModeNumber = 1;
+    #endregion
+
+    // Use this for initialization
+    void Start()
+    {
+        //获取组件
+        m_transform = this.transform;
+        m_agent = this.GetComponent&amp;lt;NavMeshAgent&amp;gt;();
+        m_ani = this.GetComponent&amp;lt;Animator&amp;gt;();
+
+        //获取主角
+        m_player = GameObject.FindGameObjectWithTag(&amp;quot;Player&amp;quot;).GetComponent&amp;lt;Player&amp;gt;();
+
+        if (Vector3.Distance(m_transform.position, m_player.m_transform.position) &amp;gt; m_attackRange)
+        {
+            m_ani.SetBool(&amp;quot;idle&amp;quot;, true);
+            return;
+        }
+        //设置寻路目标
+        m_agent.SetDestination(m_player.transform.position);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.instance.pause)
+        {
+            m_agent.Stop();
+            m_ani.SetBool(&amp;quot;run&amp;quot;, false);
+            m_ani.SetBool(&amp;quot;attack&amp;quot;, false);
+            m_ani.SetBool(&amp;quot;idle&amp;quot;, true);
+            return;
+        }
+
+        m_BackTimer += Time.deltaTime;
+        //如果主角生命值为0，则什么也不做
+        if (m_player.m_life &amp;lt;= 0) return;
+
+        RotateTo();
+
+        //获取当前动画状态
+        AnimatorStateInfo stateInfo = m_ani.GetCurrentAnimatorStateInfo(0);
+
+        #region 如果处于待机状态
+        //m_ani.IsInTransition(0) 判断是否在动画过渡过程中
+        if (stateInfo.nameHash == Animator.StringToHash(&amp;quot;Base Layer.idle&amp;quot;) &amp;amp;&amp;amp; !m_ani.IsInTransition(0))
+        {
+            m_ani.SetBool(&amp;quot;idle&amp;quot;, false);
+
+            if (Vector3.Distance(m_transform.position, m_player.m_transform.position) &amp;gt; m_attackRange)
+            {
+                m_ani.SetBool(&amp;quot;idle&amp;quot;, true);
+                return;
+            }
+
+            //待机一段时间
+            m_timer -= Time.deltaTime;
+            if (m_timer &amp;gt; 0) return;
+
+            //如果与主角距离小于m_stopDistance米，则进入攻击状态
+            if (Vector3.Distance(m_transform.position, m_player.m_transform.position) &amp;lt; m_stopDistance)
+            {
+                //进入攻击动画状态
+                m_ani.SetBool(&amp;quot;attack&amp;quot;, true);
+            }
+            else
+            {
+                //重置计时器
+                m_timer = 1;
+                //设置目标点
+                m_agent.SetDestination(m_player.m_transform.position);
+                //进入跑步动画状态
+                m_ani.SetBool(&amp;quot;run&amp;quot;, true);
+            }
+        }
+        #endregion
+
+        #region 如果处于跑步状态
+        if (stateInfo.nameHash == Animator.StringToHash(&amp;quot;Base Layer.run&amp;quot;) &amp;amp;&amp;amp; !m_ani.IsInTransition(0))
+        {
+            m_ani.SetBool(&amp;quot;run&amp;quot;, false);
+
+            if (Vector3.Distance(m_transform.position, m_player.m_transform.position) &amp;gt; m_attackRange)
+            {
+                m_ani.SetBool(&amp;quot;idle&amp;quot;, true);
+                return;
+            }
+
+            //每隔一秒重新定位主角
+            m_timer -= Time.deltaTime;
+            if (m_timer &amp;lt; 0)
+            {
+                m_timer = 1;
+                m_agent.SetDestination(m_player.m_transform.position);
+            }
+
+            //追向主角
+            MoveTo();
+
+            //如果与主角距离小于m_stopDistance米，则进入攻击状态
+            if (Vector3.Distance(m_transform.position, m_player.m_transform.position) &amp;lt; m_stopDistance)
+            {
+                //停止寻路
+                m_agent.ResetPath();
+                m_ani.SetBool(&amp;quot;attack&amp;quot;, true);
+            }
+
+        }
+        #endregion
+
+        #region 如果处于攻击状态
+        if (stateInfo.nameHash == Animator.StringToHash(&amp;quot;Base Layer.attack&amp;quot;) &amp;amp;&amp;amp; !m_ani.IsInTransition(0))
+        {
+            m_ani.SetBool(&amp;quot;attack&amp;quot;, false);
+            RotateTo();
+
+            if (Vector3.Distance(m_transform.position, m_player.m_transform.position) &amp;gt; m_attackRange)
+            {
+                m_ani.SetBool(&amp;quot;idle&amp;quot;, true);
+                return;
+            }
+
+            ////如果动画播完，进入待机状态
+            //Animator.GetCurrentAnimatorStateInfo(0).normalizedTime
+            //这个返回一个float，大于等于1表示动画播放完一次
+            if (stateInfo.normalizedTime &amp;gt;= 1.0f)
+            {
+                m_ani.SetBool(&amp;quot;idle&amp;quot;, true);
+                //重置计时器
+                m_timer = 2;
+                //减少主角生命
+                m_player.OnDamage(1);
+            }
+        }
+        #endregion
+
+        #region 如果处于死亡状态
+        if (stateInfo.nameHash == Animator.StringToHash(&amp;quot;Base Layer.death&amp;quot;) &amp;amp;&amp;amp; !m_ani.IsInTransition(0))
+        {
+            if (stateInfo.normalizedTime &amp;gt;= 1.0f)
+            {
+                OnDeath();
+            }
+        }
+        #endregion
+
+        //m_agent.SetDestination(m_player.transform.position);
+        //MoveTo();
+    }
+
+    void MoveTo()
+    {
+        if (GameManager.instance.pause) return;
+        float speed = m_movSpeed * Time.deltaTime;
+        m_agent.Move(m_transform.TransformDirection(new Vector3(0, 0, speed)));
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 使敌人始终旋转到面向主角的角度
+    /// &amp;lt;/summary&amp;gt;
+    void RotateTo()
+    {
+        if (GameManager.instance.pause) return;
+        //当前角度
+        Vector3 oldAngle = m_transform.eulerAngles;
+
+        //获得面向主角的水平方向的角度(只需要在水平方向面向主角)
+        m_transform.LookAt(m_player.m_transform);   //当该物体设置了LookAt并指定了目标物体时，该物体的z轴将始终指向目标物体
+        float target = m_transform.eulerAngles.y;
+
+        //转向主角
+        float speed = m_rotSpeed * Time.deltaTime;
+        float angle = Mathf.MoveTowardsAngle(oldAngle.y, target, speed);
+        m_transform.eulerAngles = new Vector3(0, angle, 0);
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 减少敌人生命，要传递给Player脚本调用
+    /// &amp;lt;/summary&amp;gt;
+    /// &amp;lt;param name=&amp;quot;damage&amp;quot;&amp;gt;生命值减少的数值&amp;lt;/param&amp;gt;
+    //计算器
+
+    public void OnDamage(int damage)
+    {
+        if (GameManager.instance.pause) return;
+        m_life -= damage;
+        if (m_BackTimer &amp;gt;= 2)
+        {
+            Vector3 position = transform.forward;
+            //Debug.Log(position);
+            this.transform.position -= position * 3;
+            m_BackTimer = 0;
+        }
+
+        if (m_life &amp;lt;= 0)
+        {
+            m_ani.SetBool(&amp;quot;death&amp;quot;, true);
+        }
+    }
+
+    public void Init(EnemySpawn spawn)
+    {
+        if (GameManager.instance.pause) return;
+        m_spawn = spawn;
+        m_spawn.m_enemyCount++;
+    }
+
+    public int score = 100;
+
+    public void OnDeath()
+    {
+        if (GameManager.instance.pause) return;
+        if (CurrentModeNumber == 2)
+        {
+            //更新敌人数量
+            m_spawn.m_enemyCount--;
+        }
+
+        //加分
+        GameManager.instance.SetScore(score);
+        //摧毁自身
+        Destroy(this.gameObject);
+
+        if (CurrentModeNumber == 3)
+        {
+            GameManager.instance.win = true;
+        }
+    }
+
+    //红色血条贴图
+    public Texture2D blood_red;
+    //黑色血条贴图
+    public Texture2D blood_black;
+    void OnGUI()
+    {
+        if (CurrentModeNumber == 3)
+        {
+            if (m_life &amp;lt;= 0) return;
+
+            //计算出血条的宽高
+            Vector2 bloodSize = GUI.skin.label.CalcSize(new GUIContent(blood_red));
+            //通过血值计算红色血条显示区域
+            int blood_height = blood_red.height * m_life / 100;
+
+            //先绘制黑色血条
+            GUI.DrawTexture(new Rect(Screen.width * 0.05f, Screen.height * 0.2f, bloodSize.x, bloodSize.y * 0.6f), blood_black);
+            //在绘制红色血条
+            GUI.DrawTexture(new Rect(Screen.width * 0.05f, Screen.height * 0.2f, bloodSize.x, blood_height * 0.6f), blood_red);
+
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【UI】&quot;&gt;&lt;a href=&quot;#【UI】&quot; class=&quot;headerlink&quot; title=&quot;【UI】&quot;&gt;&lt;/a&gt;【UI】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Game Interface&lt;br&gt;&lt;img src=&quot;http://i2.piimg.com/569486/0e9eb098bd38a4ad.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;GameManager.cs&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class GameManager : MonoBehaviour
+{
+    #region 字段
+    public static GameManager instance = null;
+    //游戏得分
+    int m_score = 0;
+    int m_scoreSP = 0;
+    //游戏最高得分
+    static int m_hiscore = 0;
+    static int m_hiscoreSP = 0;
+    //子弹数
+    int m_ammo = 100;
+    //游戏主角
+    Player m_player;
+    public Transform m_door;
+    //GUIText
+    GUIText txt_ammo;
+    GUIText txt_life;
+    GUIText txt_hiscore;
+    GUIText txt_score;
+    public bool pause = false;
+    bool flag = false;
+    public int CurrentSceneNumber;
+    #endregion
+
+    // Use this for initialization
+    void Start()
+    {
+        if (CurrentSceneNumber == 2)
+        {
+            m_score += 2100;
+        }
+        instance = this;
+        m_player = GameObject.FindGameObjectWithTag(&amp;quot;Player&amp;quot;).GetComponent&amp;lt;Player&amp;gt;();
+        txt_ammo = this.transform.FindChild(&amp;quot;txt_ammo&amp;quot;).GetComponent&amp;lt;GUIText&amp;gt;();
+        txt_hiscore = this.transform.FindChild(&amp;quot;txt_hiscore&amp;quot;).GetComponent&amp;lt;GUIText&amp;gt;();
+        txt_score = this.transform.FindChild(&amp;quot;txt_score&amp;quot;).GetComponent&amp;lt;GUIText&amp;gt;();
+        txt_life = this.transform.FindChild(&amp;quot;txt_life&amp;quot;).GetComponent&amp;lt;GUIText&amp;gt;();
+        if (CurrentSceneNumber == 0)
+        {
+            txt_score.text = &amp;quot;Score  &amp;quot; + m_scoreSP;
+            txt_hiscore.text = &amp;quot;High Score  &amp;quot; + m_hiscoreSP;
+        }
+        else
+        {
+            txt_score.text = &amp;quot;Score  &amp;quot; + m_score;
+            txt_hiscore.text = &amp;quot;High Score  &amp;quot; + m_hiscore;
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (pause) return;
+        if (CurrentSceneNumber == 1)
+        {
+            if (m_score &amp;gt;= 2100 &amp;amp;&amp;amp; !flag)
+            {
+                flag = true;
+                Destroy(GameObject.FindGameObjectWithTag(&amp;quot;Block&amp;quot;));
+                m_door.GetComponent&amp;lt;Animation&amp;gt;().Play(&amp;quot;open&amp;quot;);
+            }
+        }
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 更新分数
+    /// &amp;lt;/summary&amp;gt;
+    /// &amp;lt;param name=&amp;quot;score&amp;quot;&amp;gt;增加的分数数值&amp;lt;/param&amp;gt;
+    public void SetScore(int score)
+    {
+
+        if (CurrentSceneNumber == 0)
+        {
+            m_scoreSP += score;
+            if (m_scoreSP &amp;gt; m_hiscoreSP)
+            {
+                m_hiscoreSP = m_scoreSP;
+            }
+            txt_score.text = &amp;quot;Score  &amp;quot; + m_scoreSP;
+            txt_hiscore.text = &amp;quot;High Score  &amp;quot; + m_hiscoreSP;
+        }
+        else
+        {
+            m_score += score;
+            if (m_score &amp;gt; m_hiscore)
+            {
+                m_hiscore = m_score;
+            }
+            txt_score.text = &amp;quot;Score  &amp;quot; + m_score;
+            txt_hiscore.text = &amp;quot;High Score  &amp;quot; + m_hiscore;
+        }
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 更新弹药
+    /// &amp;lt;/summary&amp;gt;
+    /// &amp;lt;param name=&amp;quot;ammo&amp;quot;&amp;gt;减少的弹药数量&amp;lt;/param&amp;gt;
+    public void SetAmmo(int ammo)
+    {
+        m_ammo -= ammo;
+        if (m_ammo &amp;lt;= 0)
+        {
+            m_ammo = 100 + m_ammo;
+        }
+        txt_ammo.text = m_ammo.ToString() + &amp;quot;/100&amp;quot;;
+    }
+
+    /// &amp;lt;summary&amp;gt;
+    /// 更新生命
+    /// &amp;lt;/summary&amp;gt;
+    /// &amp;lt;param name=&amp;quot;life&amp;quot;&amp;gt;当前生命数值&amp;lt;/param&amp;gt;
+    public void SetLife(int life)
+    {
+        if (win)
+            return;
+        txt_life.text = life.ToString();
+    }
+
+    public Texture m_TryAgain;
+    public Texture m_Title;
+    public bool win = false;
+    void OnGUI()
+    {
+        //居中显示文字
+        GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+        //改变文字大小
+        GUI.skin.label.fontSize = 40;
+
+        if (CurrentSceneNumber == 1)
+        {
+            if (m_score &amp;gt;= 2100)
+            {
+                //显示通关
+                GUI.Label(new Rect(Screen.width * 0.5f - 300, Screen.height * 0.4f, 600, 45), &amp;quot;恭喜！第一关已通过！&amp;quot;);
+                GUI.Label(new Rect(Screen.width * 0.5f - 300, Screen.height * 0.5f, 600, 45), &amp;quot;请通过最初的门进入第二关！&amp;quot;);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            pause = true;
+            //释放鼠标
+            Screen.lockCursor = false;
+            //显示重新开始按钮
+            if (GUI.Button(new Rect(Screen.width * 0.5f - 150, Screen.height * 0.70f, 300, 45), m_TryAgain))
+            {
+                if (CurrentSceneNumber == 0)
+                {
+                    Application.LoadLevel(&amp;quot;LevelSP&amp;quot;);
+                }
+                else
+                {
+                    Application.LoadLevel(&amp;quot;Level&amp;quot;);
+                }
+
+                pause = false;
+            }
+
+            //显示回到标题按钮
+            if (GUI.Button(new Rect(Screen.width * 0.5f - 150, Screen.height * 0.85f, 300, 45), m_Title))
+            {
+                Application.LoadLevel(&amp;quot;Title&amp;quot;);
+                pause = false;
+            }
+        }
+        else if (m_player.m_life &amp;lt;= 0 &amp;amp;&amp;amp; !win)
+        {
+            pause = true;
+            //显示Game Over
+            GUI.Label(new Rect(0, 0, Screen.width, Screen.height), &amp;quot;Game Over&amp;quot;);
+
+            //释放鼠标
+            Screen.lockCursor = false;
+
+            //显示重新开始按钮
+            if (GUI.Button(new Rect(Screen.width * 0.5f - 150, Screen.height * 0.70f, 300, 45), m_TryAgain))
+            {
+                if (CurrentSceneNumber == 0)
+                {
+                    Application.LoadLevel(&amp;quot;LevelSP&amp;quot;);
+                }
+                else
+                {
+                    Application.LoadLevel(&amp;quot;Level&amp;quot;);
+                }
+                pause = false;
+            }
+
+            //显示回到标题按钮
+            if (GUI.Button(new Rect(Screen.width * 0.5f - 150, Screen.height * 0.85f, 300, 45), m_Title))
+            {
+                Application.LoadLevel(&amp;quot;Title&amp;quot;);
+                pause = false;
+            }
+        }
+        else if (win)
+        {
+            pause = true;
+            //显示Win
+            GUI.Label(new Rect(0, 0, Screen.width, Screen.height), &amp;quot;You Win!&amp;quot;);
+
+            //释放鼠标
+            Screen.lockCursor = false;
+
+            //显示重新开始按钮
+            if (GUI.Button(new Rect(Screen.width * 0.5f - 150, Screen.height * 0.70f, 300, 45), m_TryAgain))
+            {
+                Application.LoadLevel(&amp;quot;Level&amp;quot;);
+                pause = false;
+            }
+
+            //显示回到标题按钮
+            if (GUI.Button(new Rect(Screen.width * 0.5f - 150, Screen.height * 0.85f, 300, 45), m_Title))
+            {
+                Application.LoadLevel(&amp;quot;Title&amp;quot;);
+                pause = false;
+            }
+        }
+        else
+        {
+            pause = false;
+            Screen.lockCursor = true;
+        }
+    }            
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Spawn】&quot;&gt;&lt;a href=&quot;#【Spawn】&quot; class=&quot;headerlink&quot; title=&quot;【Spawn】&quot;&gt;&lt;/a&gt;【Spawn】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;GameManager.cs&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class EnemySpawn : MonoBehaviour
+{
+    #region 字段
+    //敌人的Prefab
+    public Transform m_enemy;
+    //生成的敌人数量
+    public int m_enemyCount = 0;
+    //敌人的最大生成数量
+    public int m_maxEnemy = 3;
+    //生成敌人的时间间隔
+    float m_timer = 0;
+
+    protected Transform m_transform;
+    #endregion
+
+    // Use this for initialization
+    void Start()
+    {
+        m_transform = this.transform;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (GameManager.instance.pause) return;
+        //如果生成敌人的数量超过最大值，停止生成敌人
+        if (m_enemyCount &amp;gt;= m_maxEnemy) return;
+
+        m_timer -= Time.deltaTime;
+        if (m_timer &amp;lt;= 0)
+        {
+            //重设计时器
+            m_timer = Random.value * 15.0f;
+            if (m_timer &amp;lt; 5)
+            {
+                m_timer = 5;
+            }
+
+            //生成敌人
+            //随机生成位置
+            Vector3 position = m_transform.position;
+            //float x = Random.value * 15.0f;
+            //float z = Random.value * 15.0f;
+            //position.x += x;
+            //position.z += z;
+
+            Transform obj = (Transform)Instantiate(m_enemy, position, m_enemy.rotation);
+
+            //获取敌人的脚本
+            Enemy enemy = obj.GetComponent&amp;lt;Enemy&amp;gt;();
+
+            //初始化敌人
+            enemy.Init(this);
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawIcon(this.transform.position, &amp;quot;Spawn.tif&amp;quot;, true);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Title】&quot;&gt;&lt;a href=&quot;#【Title】&quot; class=&quot;headerlink&quot; title=&quot;【Title】&quot;&gt;&lt;/a&gt;【Title】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Start&lt;br&gt;&lt;img src=&quot;http://i2.piimg.com/569486/1a1f31a01891d538.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;Introduction&lt;br&gt;&lt;img src=&quot;http://i2.piimg.com/569486/1a5bada0add8f39a.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;【Screenshot】&quot;&gt;&lt;a href=&quot;#【Screenshot】&quot; class=&quot;headerlink&quot; title=&quot;【Screenshot】&quot;&gt;&lt;/a&gt;【Screenshot】&lt;/h3&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;img src=&quot;http://i2.piimg.com/569486/f1e02fa77b0b07a4.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;img src=&quot;http://i2.piimg.com/569486/776b875b3fca311c.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;img src=&quot;http://i2.piimg.com/569486/526883630f32b0a2.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;img src=&quot;http://i2.piimg.com/569486/0c08790e2dedb0db.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;【Download】&quot;&gt;&lt;a href=&quot;#【Download】&quot; class=&quot;headerlink&quot; title=&quot;【Download】&quot;&gt;&lt;/a&gt;【Download】&lt;/h3&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;Link：&lt;a href=&quot;http://pan.baidu.com/s/1o7FVGam&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://pan.baidu.com/s/1o7FVGam&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;Pwd：n8wb&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;h3 id=&quot;【Basic-Information】&quot;&gt;&lt;a href=&quot;#【Basic-Information】&quot; class=&quot;headerlink&quot; title=&quot;【Basic Information】&quot;&gt;&lt;/a&gt;【Basic Information】&lt;/h3&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
