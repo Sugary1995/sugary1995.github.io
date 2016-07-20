@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2016/07/20/VRexpo/</loc>
-    <lastmod>2016-07-20T07:43:58.047Z</lastmod>
+    <lastmod>2016-07-20T07:45:50.936Z</lastmod>
     <data>
         <display>
         <title>【UNITY】VR-GARDEN EXPO</title>
