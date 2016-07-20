@@ -4,11 +4,26 @@
 
     
   <url>
-    <loc>http://yoursite.com/2016/07/17/nightmare/</loc>
-    <lastmod>2016-07-19T13:31:44.894Z</lastmod>
+    <loc>http://yoursite.com/2016/07/20/VRexpo/</loc>
+    <lastmod>2016-07-20T07:39:26.651Z</lastmod>
     <data>
         <display>
-        <title>【UNITY】Nightmare</title>
+        <title>【UNITY】VR-GARDEN EXPO</title>
+        <pubTime>2016-07-20T06:42:43.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2016/07/17/nightmare/</loc>
+    <lastmod>2016-07-20T06:49:58.407Z</lastmod>
+    <data>
+        <display>
+        <title>【UNITY】GAME-NIGHTMARE</title>
         <pubTime>2016-07-17T11:56:21.000Z</pubTime>
         
          
