@@ -4,6 +4,21 @@
 
     
   <url>
+    <loc>http://yoursite.com/2016/07/25/HexoBlog/</loc>
+    <lastmod>2016-07-25T08:13:30.287Z</lastmod>
+    <data>
+        <display>
+        <title>【HEXO】PERSONAL BLOG</title>
+        <pubTime>2016-07-25T08:08:19.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2016/07/20/VRexpo/</loc>
     <lastmod>2016-07-20T08:32:50.908Z</lastmod>
     <data>
