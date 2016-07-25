@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://yoursite.com/2016/07/25/HexoBlog/</loc>
-    <lastmod>2016-07-25T09:09:14.725Z</lastmod>
+    <lastmod>2016-07-25T10:45:49.097Z</lastmod>
     <data>
         <display>
         <title>【HEXO】PERSONAL BLOG</title>

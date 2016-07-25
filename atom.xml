@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-25T09:09:14.725Z</updated>
+  <updated>2016-07-25T10:45:49.097Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/07/25/HexoBlog/"/>
     <id>http://yoursite.com/2016/07/25/HexoBlog/</id>
     <published>2016-07-25T08:08:19.000Z</published>
-    <updated>2016-07-25T09:09:14.725Z</updated>
+    <updated>2016-07-25T10:45:49.097Z</updated>
     
     <content type="html">&lt;hr&gt;
 &lt;h3 id=&quot;【Information】&quot;&gt;&lt;a href=&quot;#【Information】&quot; class=&quot;headerlink&quot; title=&quot;【Information】&quot;&gt;&lt;/a&gt;【Information】&lt;/h3&gt;&lt;hr&gt;
@@ -34,29 +34,79 @@
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h3 id=&quot;【Steps】&quot;&gt;&lt;a href=&quot;#【Steps】&quot; class=&quot;headerlink&quot; title=&quot;【Steps】&quot;&gt;&lt;/a&gt;【Steps】&lt;/h3&gt;&lt;hr&gt;
-&lt;h4 id=&quot;Install-prerequisite-software&quot;&gt;&lt;a href=&quot;#Install-prerequisite-software&quot; class=&quot;headerlink&quot; title=&quot;Install prerequisite software&quot;&gt;&lt;/a&gt;Install prerequisite software&lt;/h4&gt;&lt;ul&gt;
+&lt;h4 id=&quot;【Install-prerequisite-software】&quot;&gt;&lt;a href=&quot;#【Install-prerequisite-software】&quot; class=&quot;headerlink&quot; title=&quot;【Install prerequisite software】&quot;&gt;&lt;/a&gt;【Install prerequisite software】&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Node.js：&lt;a href=&quot;https://nodejs.org/en/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nodejs.org/en/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Git Client：&lt;a href=&quot;http://git-scm.com/download&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://git-scm.com/download&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&quot;Install-hexo&quot;&gt;&lt;a href=&quot;#Install-hexo&quot; class=&quot;headerlink&quot; title=&quot;Install hexo&quot;&gt;&lt;/a&gt;Install hexo&lt;/h4&gt;&lt;ul&gt;
-&lt;li&gt;输入安装Hexo的命令：&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm install -g hexo&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;【注意】如果安装太慢，可以修改配置&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm config set registry http://registry.cnpmjs.org&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm info underscore&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;安装完成后，在喜欢的文件下，执行以下指令，Hexo即会自动在目标文件夹建立网站所需要的所有文章。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hexo init&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;安装依赖包：&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;在E:\hexo内执行以下命令：&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hexo g&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;hexo s&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;然后用浏览器访问&lt;a href=&quot;http://localhost:4000，&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000，&lt;/a&gt; 此时，你应该看到了一个漂亮的博客了，当然这个博客只是在本地的，别人是看不到的，hexo3.0使用的默认主题是landscape。&lt;/li&gt;
-&lt;li&gt;【注意】如果输入地址后一直无响应，可能端口号4000被占用&lt;/li&gt;
-&lt;li&gt;输入命令，修改端口号： hexo server -p 5000&lt;/li&gt;
-&lt;li&gt;用浏览器访问&lt;a href=&quot;http://localhost:5000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:5000&lt;/a&gt;&lt;/li&gt;
+&lt;h4 id=&quot;【Install-hexo】&quot;&gt;&lt;a href=&quot;#【Install-hexo】&quot; class=&quot;headerlink&quot; title=&quot;【Install hexo】&quot;&gt;&lt;/a&gt;【Install hexo】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;输入安装Hexo的命令：&lt;br&gt; &lt;code&gt;npm install -g hexo&lt;/code&gt;&lt;br&gt; 【注意】如果安装太慢，可以修改配置&lt;br&gt; &lt;code&gt;npm config set registry http://registry.cnpmjs.org&lt;/code&gt;&lt;br&gt; &lt;code&gt;npm info underscore&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装完成后，在喜欢的文件下，执行以下指令，Hexo即会自动在目标文件夹建立网站所需要的所有文章。&lt;br&gt; &lt;code&gt;hexo init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装依赖包：&lt;br&gt; &lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在E:\hexo内执行以下命令：&lt;br&gt; &lt;code&gt;hexo g&lt;/code&gt;&lt;br&gt; &lt;code&gt;hexo s&lt;/code&gt;&lt;br&gt; 然后用浏览器访问&lt;a href=&quot;http://localhost:4000，&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:4000，&lt;/a&gt; 此时，你应该看到了一个漂亮的博客了，当然这个博客只是在本地的，别人是看不到的，hexo3.0使用的默认主题是landscape。&lt;br&gt; 【注意】如果输入地址后一直无响应，可能端口号4000被占用&lt;br&gt; 输入命令，修改端口号： hexo server -p 5000&lt;br&gt; 用浏览器访问&lt;a href=&quot;http://localhost:5000&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://localhost:5000&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&quot;Deploy-local-files-to-GitHub&quot;&gt;&lt;a href=&quot;#Deploy-local-files-to-GitHub&quot; class=&quot;headerlink&quot; title=&quot;Deploy local files to GitHub&quot;&gt;&lt;/a&gt;Deploy local files to GitHub&lt;/h4&gt;&lt;h4 id=&quot;Change-Theme&quot;&gt;&lt;a href=&quot;#Change-Theme&quot; class=&quot;headerlink&quot; title=&quot;Change Theme&quot;&gt;&lt;/a&gt;Change Theme&lt;/h4&gt;&lt;h4 id=&quot;Optimization-theme&quot;&gt;&lt;a href=&quot;#Optimization-theme&quot; class=&quot;headerlink&quot; title=&quot;Optimization theme&quot;&gt;&lt;/a&gt;Optimization theme&lt;/h4&gt;&lt;h4 id=&quot;Deploy-local-files-to-Coding&quot;&gt;&lt;a href=&quot;#Deploy-local-files-to-Coding&quot; class=&quot;headerlink&quot; title=&quot;Deploy local files to Coding&quot;&gt;&lt;/a&gt;Deploy local files to Coding&lt;/h4&gt;&lt;h4 id=&quot;DNS-Bindings&quot;&gt;&lt;a href=&quot;#DNS-Bindings&quot; class=&quot;headerlink&quot; title=&quot;DNS Bindings&quot;&gt;&lt;/a&gt;DNS Bindings&lt;/h4&gt;</content>
+&lt;h4 id=&quot;【Deploy-local-files-to-GitHub】&quot;&gt;&lt;a href=&quot;#【Deploy-local-files-to-GitHub】&quot; class=&quot;headerlink&quot; title=&quot;【Deploy local files to GitHub】&quot;&gt;&lt;/a&gt;【Deploy local files to GitHub】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;注册账号：&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;创建repository：&lt;br&gt; 创建时，只需要填写Repository name即可，当然这个名字的格式必须为youname.github.io，例如我的为sugary1995.github.io&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;部署本地文件到github：&lt;br&gt; 在_config.yml最下方，添加如下配置(命令中的第一个Sugary1995为Github的用户名,第二个sugary1995为之前New的Repository的名字,记得改成自己的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;deploy: 
+    type: git
+    repository: https://github.com/Sugary1995/sugary1995.github.io.git
+    branch: master
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;配置SSH：&lt;br&gt; 在Git Bash输入以下指令（任意位置点击鼠标右键），检查是否已经存在了SSH keys。&lt;br&gt; &lt;code&gt;ls -al ~/.ssh&lt;/code&gt;&lt;br&gt; 如果不存在就没有关系，如果存在的话，直接删除.ssh文件夹里面所有文件：&lt;br&gt; &lt;img src=&quot;http://i2.piimg.com/569486/9f40aceac176499a.png&quot; alt=&quot;Markdown&quot;&gt;&lt;br&gt; 输入以下指令（邮箱就是你注册Github时候的邮箱）后，回车，出现提示让你输入的时候直接先回车，好像需要3次，如下图所示：&lt;br&gt; &lt;code&gt;ssh-keygen -t rsa -C &amp;quot;273057280@qq.com&amp;quot;&lt;/code&gt;&lt;br&gt; 然后键入以下指令：&lt;br&gt; &lt;code&gt;ssh-agent -s&lt;/code&gt;&lt;br&gt; 继续输入指令：&lt;br&gt; &lt;code&gt;ssh-add ~/.ssh/id_rsa&lt;/code&gt;&lt;br&gt; 【注意】如果发生错误，就输入&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eval `ssh-agent -s`
+ssh-add
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;添加SSH key到你的Github账户：&lt;br&gt;复制选中文件中的内容&lt;br&gt;&lt;img src=&quot;http://i2.piimg.com/569486/b97bf3f2405625e8.png&quot; alt=&quot;Markdown&quot;&gt;&lt;br&gt;然后到Github里面，点击右上角的设置图标Settings,找到SSH keys,Ttile随便你命名，Key就黏贴上你刚才复制的key,然后点Add SSH key&lt;br&gt;&lt;img src=&quot;http://i2.piimg.com/569486/e225b4bc4f31e50a.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;测试一下：&lt;br&gt; &lt;code&gt;ssh -T git@github.com&lt;/code&gt;&lt;br&gt; 可能会看到有警告，输入“yes”就好&lt;br&gt; &lt;img src=&quot;http://i2.piimg.com/569486/67486e46cc7a985e.png&quot; alt=&quot;Markdown&quot;&gt;&lt;br&gt; 以上就表示SSH配置好了，执行以下命令部署到Github上。&lt;br&gt; &lt;code&gt;hexo g&lt;/code&gt;&lt;br&gt; &lt;code&gt;hexo d&lt;/code&gt;&lt;br&gt; 如果执行hexo d命令报下名错：&lt;br&gt; 就先安装一下hexo-deployer-git这个模块：&lt;br&gt; &lt;code&gt;npm install hexo-deployer-git --save&lt;/code&gt;&lt;br&gt; 安装好了继续执行&lt;code&gt;hexo d&lt;/code&gt;部署命令&lt;/li&gt;
+&lt;li&gt;访问网站：&lt;br&gt; 我的是： sugary1995.github.io&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Publish-an-article】&quot;&gt;&lt;a href=&quot;#【Publish-an-article】&quot; class=&quot;headerlink&quot; title=&quot;【Publish an article】&quot;&gt;&lt;/a&gt;【Publish an article】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;在Git Bash执行命令：&lt;br&gt; &lt;code&gt;hexo new &amp;quot;my new post&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;打开编辑：&lt;br&gt; 使用记事本或者其他文本工具（推荐使用markdownpad）。&lt;/li&gt;
+&lt;li&gt;写完文章后：&lt;br&gt; &lt;code&gt;hexo g&lt;/code&gt; 生成静态文件。&lt;br&gt; &lt;code&gt;hexo s&lt;/code&gt; 在本地预览效果。&lt;br&gt; &lt;code&gt;hexo d&lt;/code&gt; 同步到github&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Change-Theme】&quot;&gt;&lt;a href=&quot;#【Change-Theme】&quot; class=&quot;headerlink&quot; title=&quot;【Change Theme】&quot;&gt;&lt;/a&gt;【Change Theme】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;下载主题：&lt;br&gt; 可以去官网下载或者去网上搜索&lt;br&gt; 这里使用的是huno主题&lt;br&gt; &lt;code&gt;git clone git://github.com/someus/huno.git themes/huno&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启用主题：&lt;br&gt; 修改你的博客根目录下的config.yml配置文件中的theme属性，将其设置为huno。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;更新主题：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd themes/huno
+git pull    
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;修改_config.yml配置：&lt;br&gt; 配置说明可以查看官网：&lt;br&gt; &lt;a href=&quot;https://hexo.io/zh-cn/docs/configuration.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://hexo.io/zh-cn/docs/configuration.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;修改主题：&lt;br&gt; 说明可以查看主题设计者的说明：&lt;br&gt; &lt;a href=&quot;https://github.com/someus/huno&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/someus/huno&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【Deploy-local-files-to-Coding】&quot;&gt;&lt;a href=&quot;#【Deploy-local-files-to-Coding】&quot; class=&quot;headerlink&quot; title=&quot;【Deploy local files to Coding】&quot;&gt;&lt;/a&gt;【Deploy local files to Coding】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;修改_config.yml配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;deploy:
+       type: git
+       repo:
+          github: git@github.com:Sugary1995/sugary1995.github.io.git,master
+          coding: git@git.coding.net:sugary/sugary.git,master
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;coding上创建一个新项目&lt;br&gt; &lt;img src=&quot;http://i4.piimg.com/569486/5a7e30325fd37cf5.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;同步本地hexo到coding上&lt;br&gt; 复制选中文件中的内容&lt;br&gt; &lt;img src=&quot;http://i2.piimg.com/569486/b97bf3f2405625e8.png&quot; alt=&quot;Markdown&quot;&gt;&lt;br&gt; 创建SSH个人公钥&lt;br&gt; &lt;img src=&quot;http://i4.piimg.com/569486/03ebefa58816d095.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;添加后，在git bash命令输入：&lt;br&gt; &lt;code&gt;ssh -T git@git.coding.net&lt;/code&gt;&lt;br&gt; 如果得到下面提示就表示公钥添加成功了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Coding.net Tips : [Hello ! You&amp;apos;ve conected to Coding.net by SSH successfully! ]
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt; 最后使用部署命令就能把博客同步到coding上面：&lt;br&gt; &lt;code&gt;hexo deploy -g&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;pages服务方式部署&lt;br&gt; &lt;img src=&quot;http://i4.piimg.com/569486/f94bef15c3b7680b.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;访问网站：&lt;br&gt; 我的是： sugary.coding.me&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;【DNS-Bindings】&quot;&gt;&lt;a href=&quot;#【DNS-Bindings】&quot; class=&quot;headerlink&quot; title=&quot;【DNS Bindings】&quot;&gt;&lt;/a&gt;【DNS Bindings】&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;购买域名：&lt;br&gt; 在万网上面购买了xujiayi.top域名&lt;/li&gt;
+&lt;li&gt;配置CNAME&lt;br&gt; 实现国内的走coding，海外的走github&lt;br&gt; &lt;img src=&quot;http://i2.piimg.com/569486/7dfca60044859a66.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;访问网站：&lt;br&gt; 我的是： xujiayi.top&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;【Screenshot】&quot;&gt;&lt;a href=&quot;#【Screenshot】&quot; class=&quot;headerlink&quot; title=&quot;【Screenshot】&quot;&gt;&lt;/a&gt;【Screenshot】&lt;/h3&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;img src=&quot;http://i2.piimg.com/569486/73f773694c6cfeff.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&quot;http://i2.piimg.com/569486/98db6c1d1232d180.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;img src=&quot;http://i2.piimg.com/569486/16db4e013045932f.png&quot; alt=&quot;Markdown&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
     
     <summary type="html">
     
